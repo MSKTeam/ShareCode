@@ -1,0 +1,59 @@
+Mẫu bài đăng dành cho truyện tranh , truyện chữ:
+
+Truyện tranh:
+<------------------------------------------------------------------------------------------------------------------->
+
+<!-- Ảnh đại diện -->
+
+<!-- END -->
+
+<!--Noi dung + ten khac-->
+<div id="ten-khac"> TEXT </div>
+<div id="noi-dung"><p> TEXT </p></div>
+
+<!-- thông tin thêm -->
+<div id="extra-info">
+  <div class="y6x11p">Tác giả <span class="dt">Đang cập nhật</span></div>
+  <div class="y6x11p">Nhóm dịch <span class="dt"> TEXT </span></div>
+</div>
+<!-- END -->
+
+<------------------------------------------------------------------------------------------------------------------->
+
+Truyện chữ:
+<------------------------------------------------------------------------------------------------------------------->
+
+<!-- Ảnh đại diện -->
+
+<!-- END -->
+
+<!--Noi dung + ten khac-->
+<div id="ten-khac"> TEXT </div>
+<div id="noi-dung"><p> TEXT </p></div>
+
+<!-- thông tin thêm -->
+<div id="extra-info">
+  <div class="y6x11p">Tác giả <span class="dt">Đang cập nhật</span></div>
+  <div class="y6x11p">Nhóm dịch <span class="dt"> TEXT </span></div>
+</div>
+<!-- END -->
+
+<!-- Nguồn cấp dữ liệu cho Volume tương ứng-->
+<script>
+loadFeed('/feeds/posts/summary/-/---LABEL---?start-index=2&alt=json-in-script&max-results=150', 'volume-0');
+</script>
+<!-- END -->
+
+<!-- Volume 0 -->
+<div class="detail-ln"><div class="title-ln flex aic"><b>Volume 0</b>
+<button class="anhien mla toggle-button" data-target="#Volume-0" type="button">Hiện chương</button></div>
+<div id="Volume-0" class="DPN-Volume"><div class="content-ln"><div class="CCIMG" id="VolumeIMG">
+<!-- Ảnh -->
+
+<!-- END --></div>
+<div class="volume-option">
+<div id="volume-5">
+</div></div></div></div></div>
+<!-- END -->
+
+<------------------------------------------------------------------------------------------------------------------->
