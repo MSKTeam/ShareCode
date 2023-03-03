@@ -40,7 +40,7 @@ Truyện chữ:
 
 <!-- Nguồn cấp dữ liệu cho Volume tương ứng-->
 <script>
-loadFeed('/feeds/posts/summary/-/---LABEL---?start-index=2&alt=json-in-script&max-results=150', 'volume-0');
+loadFeed('/feeds/posts/summary/-/---LABEL---?start-index=2&alt=json-in-script&max-results=150', 'Volume-0');
 </script>
 <!-- END -->
 
