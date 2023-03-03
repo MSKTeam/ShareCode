@@ -45,14 +45,14 @@ loadFeed('/feeds/posts/summary/-/---LABEL---?start-index=2&alt=json-in-script&ma
 <!-- END -->
 
 <!-- Volume 0 -->
-<div class="detail-ln"><div class="title-ln flex aic"><b>Volume 0</b>
-<button class="anhien mla toggle-button" data-target="#Volume-0" type="button">Hiện chương</button></div>
-<div id="Volume-0" class="DPN-Volume"><div class="content-ln"><div class="CCIMG" id="VolumeIMG">
+<div class="detail-ln"><div class="title-ln flex aic"><b>Volume 0 - tiêu đề</b>
+<button class="anhien mla toggle-button" data-target="#0" type="button">Hiện chương</button></div>
+<div id="0" class="DPN-Volume"><div class="content-ln"><div class="CCIMG" id="VolumeIMG">
 <!-- Ảnh -->
 
 <!-- END --></div>
 <div class="volume-option">
-<div id="volume-0">
+<div id="Volume-0">
 </div></div></div></div></div>
 <!-- END -->
 
