@@ -1,0 +1,190 @@
+// Code js (1) , search " <b:includable id='viewAll'> "
+<script>var keyword = &quot;<data:view.search.query/>&quot;;</script>
+<script>/*<![CDATA[*/
+$(document).ready(function() {
+    var url = '/feeds/posts/default/-/Series?alt=json-in-script&max-results=150&callback=?';
+  $.getJSON(url, function(data) {
+    var entries = data.feed.entry.filter(function(entry) {
+      var title = entry.title.$t.toLowerCase();
+      var content = entry.content.$t.toLowerCase();
+      var keywordLowerCase = keyword.toLowerCase();
+      return (
+        title.indexOf(keywordLowerCase) !== -1 ||
+        content.indexOf(keywordLowerCase) !== -1
+      );
+    });
+    $.each(entries, function(index, entry) {
+      var title = entry.title.$t;
+      var thumbnail = entry.media$thumbnail.url.replace(
+        "s72-c",
+        "s500-rw"
+      );
+      var link = entry.link.filter(function(link) {
+        return link.rel === "alternate";
+      })[0].href;
+      var content = entry.content.$t;
+      var start = content.indexOf('<p id="keyword">');
+      var end = content.indexOf("</p>", start);
+      var tenKhac = "";
+      if (start !== -1 && end !== -1) {
+        tenKhac = content.slice(start, end).replace(/(<([^>]+)>)/gi, "");
+      }
+            var rating = 10;
+            var labels = entry.category.filter(function(category) {
+              return category.scheme === 'http://www.blogger.com/atom/ns#' || category.scheme === 'https://www.blogger.com/atom/ns#';
+            });
+            for (var i = 0; i < labels.length; i++) {
+              var labelValue = parseFloat(labels[i].term);
+              if (labelValue === 0.0 || labelValue === 1.0 || labelValue === 1.1 || labelValue === 1.2 || labelValue === 1.3 || labelValue === 1.4 ||labelValue === 1.5 || labelValue === 1.6 ||labelValue === 1.7 || labelValue === 1.8 || labelValue === 1.9 || labelValue === 2.0 || labelValue === 2.1 || labelValue === 2.2 || labelValue === 2.3 || labelValue === 2.4 || labelValue === 2.5 || labelValue === 2.6 || labelValue === 2.7 || labelValue === 2.8 || labelValue === 2.9 || labelValue === 3.0 || labelValue === 3.1 || labelValue === 3.2 || labelValue === 3.3 || labelValue === 3.4 || labelValue === 3.5 || labelValue === 3.6 || labelValue === 3.7 || labelValue === 3.8 || labelValue === 3.9 || labelValue === 4.0 || labelValue === 4.1 || labelValue === 4.2 || labelValue === 4.3 || labelValue === 4.4 || labelValue === 4.5 || labelValue === 4.6 || labelValue === 4.7 || labelValue === 4.8 || labelValue === 4.9 || labelValue === 5.0 || labelValue === 5.1 || labelValue === 5.2 || labelValue === 5.3 || labelValue === 5.4 || labelValue === 5.5 || labelValue === 5.6 || labelValue === 5.7 || labelValue === 5.8 || labelValue === 5.9 || labelValue === 6.0 || labelValue === 6.1 || labelValue === 6.2 || labelValue === 6.3 || labelValue === 6.4 || labelValue === 6.5 || labelValue === 6.6 || labelValue === 6.7 || labelValue === 6.8 || labelValue === 6.9 || labelValue === 7.0 || labelValue === 7.1 || labelValue === 7.2 || labelValue === 7.3 || labelValue === 7.4 || labelValue === 7.5 || labelValue === 7.6 || labelValue === 7.7 || labelValue === 7.8 || labelValue === 7.9 || labelValue === 8.0 || labelValue === 8.1 || labelValue === 8.2 || labelValue === 8.3 || labelValue === 8.4 || labelValue === 8.5 || labelValue === 8.6 || labelValue === 8.7 || labelValue === 8.8 || labelValue === 8.9 || labelValue === 9.0 || labelValue === 9.1 || labelValue === 9.2 || labelValue === 9.3 || labelValue === 9.4 || labelValue === 9.5 || labelValue === 9.6 || labelValue === 9.7 || labelValue === 9.8 || labelValue === 9.9){rating = labelValue;break;}}
+var ratingPercentage = rating * 10;
+var typepost = '';
+for (var i = 0; i < labels.length; i++) {
+    var labeltype = labels[i].term;
+    if (['Manga', 'Manhwa', 'Manhua', 'Web Novel', 'Light Novel'].includes(labeltype)) {
+        switch(labeltype) {
+            case 'Manga':
+                typepost = '<span class="post-manga">' + labeltype + '</span>';
+                break;
+            case 'Manhwa':
+                typepost = '<span class="post-manhwa">' + labeltype + '</span>';
+                break;
+            case 'Manhua':
+                typepost = '<span class="post-manhua">' + labeltype + '</span>';
+                break;
+            case 'Web Novel':
+                typepost = '<span class="post-webnovel">' + labeltype + '</span>';
+                break;
+            case 'Light Novel':
+                typepost = '<span class="post-lightnovel">' + labeltype + '</span>';
+                break;
+            default:
+                typepost = labeltype;
+                break;
+        }
+        break;
+    }
+}
+var statuspost = '';
+for (var i = 0; i < labels.length; i++) {
+    var labelstatus = labels[i].term;
+    if (['Hoàn thành', 'Đang tiến hành'].includes(labelstatus)) {
+        switch(labelstatus) {
+            case 'Hoàn thành':
+                statuspost = '<span class="post-complete">Hoàn thành</span>';
+                break;
+            case 'Đang tiến hành':
+                statuspost = '<span class="post-inprocess">Tiến hành</span>';
+                break;
+            default:
+                statuspost = labelstatus;
+                break;
+        }
+        break;
+    }
+}
+            var html = '<div class="postsearch">';
+            html += '<a href="' + link + '">';
+            html += '<div class="snippet-thumbnail">';
+            html += '<img style="width:100%" class="lazyload" src="' + thumbnail + '" alt="' + title + '"/>';
+            html += '' + statuspost + '';
+            html += '' + typepost + '';
+            html += '</div>';
+            html += '</a>';
+            html += '<div class="data">';
+            html += '<a class="oh fw-600 search-post-title" href="' + link + '">' + title + '</a>';
+            html += '<div class="rating-prc">';
+            html += '<div class="rtp">';
+            html += '<div class="rtb"><span style="width:' + ratingPercentage + '%"></span></div>';
+            html += '</div>';
+            html += '<div class="num" content="' + rating + '">' + rating.toFixed(1) + '</div>';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+
+            $('#results').append(html);
+        });
+    });
+});
+/*]]>*/</script>
+// Code js (2)
+<b:if cond='data:blog.searchQuery'>
+<script>/*<![CDATA[*/
+$(document).ready(function() {
+  var $noPostsMsg = $('<div>', { class: 'no-post', text: /*]]>*/&#39;Không có truyện nào phù hợp từ khoá <data:view.search.query/>&#39;/*<![CDATA[*/ }).hide();
+  $('#results').after($noPostsMsg);
+  
+  $(document).ajaxStop(function() {
+    if (!$('#results').children(':not(script)').length) {
+      $noPostsMsg.show();
+    } else {
+      $noPostsMsg.hide();
+    }
+  });
+});
+/*]]>*/</script>
+</b:if>
+// Css:
+<style>
+.data{margin-top:5px}
+.search-post-title{display: -webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+#sidebar .s1.bc-fff.r2.mb-20,#blog-pager{display:none}
+#results{display: grid;grid-template-columns: repeat(auto-fill,minmax(141px,1fr));gap: 20px;padding: 15px}
+.rating-prc{margin-top:5px}
+  .post-manga,.post-manhwa,.post-manhua,.post-webnovel,.post-lightnovel{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: white;
+    border-radius: 3px;
+    font-size: 11px;
+    padding: 2.5px 7px;
+    font-weight: 600;
+}
+.post-inprocess{
+    position: absolute;
+    top: 17px;
+    left: -24px;
+    transform: rotate(-45deg);
+    background: #f7b500;
+    color: white;
+    padding: 2px 24px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+    font-size: 10px;
+    font-weight: 500;
+} 
+.post-complete{
+    position: absolute;
+    top: 17px;
+    left: -24px;
+    transform: rotate(-45deg);
+    background: #09b000;
+    color: white;
+    padding: 2px 24px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+    font-size: 10px;
+    font-weight: 500;
+} 
+.snippet-thumbnail img:hover {
+    transform: scale(1.2);
+}
+.snippet-thumbnail img{
+    transition: .3s;
+}
+.post-manga{background-color:red;}
+.post-manhwa{background-color:#ff9900;}
+.post-manhua{background-color:#44db1a;}
+.post-webnovel{background-color:#0075cf;}
+.post-lightnovel{background-color:#8000db;}
+</style>
+
+// Code HTNL
+<div id='results'/>
+
+// B:IF
+<b:if cond='data:blog.searchQuery'>
+</b:if>
+
+// Post
+<p id="keyword">
+text , text , text , ...
+</p>
