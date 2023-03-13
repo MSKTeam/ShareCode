@@ -14,11 +14,11 @@ const nPLPro = {
       let nextHtml = "";
 
      if (nextIndex < this.arr.length) {
-        nextHtml = `<a href="${this.arr[nextIndex].link}">‹ Trước kia</a>`;
+        nextHtml = `<a href="${this.arr[nextIndex].link}">Kế tiếp ›</a>`;
       }
 
       if (prevIndex >= 0) {
-        prevHtml = `<a href="${this.arr[prevIndex].link}">Kế tiếp ›</a>`;
+        prevHtml = `<a href="${this.arr[prevIndex].link}">‹ Trước kia</a>`;
       }
 
       jQuery(".nPL-show").html(`
