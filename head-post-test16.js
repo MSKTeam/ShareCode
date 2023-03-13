@@ -7,29 +7,19 @@ const nPLPro = {
       return itemUrl === currentUrl;
     });
 
-    if (currentIndex !== -1) {
-      let prevIndex = currentIndex + 1;
-      let nextIndex = currentIndex - 1;
-      let prevHtml = "";
-      let nextHtml = "";
+      if (-1 !== e) {
+			let n = e + 1,
+				i = e - 1,
+				r = "",
+				l = "";
 
-     if (nextIndex < this.arr.length) {
-        nextHtml = `<a href="${this.arr[nextIndex].link}">Kế tiếp ›</a>`;
-      }
-
-      if (prevIndex >= 0) {
-        prevHtml = `<a href="${this.arr[prevIndex].link}">‹ Trước kia</a>`;
-      }
-
-      jQuery(".nPL-show").html(`
-        <select onchange="location = this.value;" id="nPL_select">
-          ${this.arr.map((item, index) => `
-            <option value="${item.link}" ${index === currentIndex ? "selected" : ""}>${item.title}</option>
-          `).join("")}
-        </select>
-        <div class="inner_nPL">${prevHtml}${nextHtml}</div>
-      `);
-    }
+      if (-1 !== e) {
+			let n = e + 1,
+				i = e - 1,
+				r = "",
+				l = "";
+			n >= 0 && (r = `<a href="${this.arr[n].link}">‹ Trước kia</a>`), i < this.arr.length && (l = `<a href="${this.arr[i].link}">Kế tiếp ›</a>`), jQuery(".nPL-show").html(`<select onchange="location = this.value;" id="nPL_select">${this.arr.map((t,n)=>`<option value="${t.link}" ${n===e?"selected":""}>${t.title}</option>`).join("")}</select><div class="inner_nPL">${r}${l}</div>`)
+		}
   },
   create: function(category, startIndexes = []) {
     let promises = startIndexes.map(startIndex => {
