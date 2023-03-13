@@ -8,8 +8,8 @@ const nPLPro = {
 				i = e - 1,
 				r = "",
 				l = "";
-			i < this.arr.length && (l = `<a href="${this.arr[i].link}">‹ Trước kia</a>`), 
-        n >= 0 && (r = `<a href="${this.arr[n].link}">Kế tiếp ›</a>`), 
+			i < this.arr.length && (l = `<a href="${this.arr[i].link}">Kế tiếp ›</a>`), 
+        n >= 0 && (r = `<a href="${this.arr[n].link}">‹ Trước kia</a>`), 
         jQuery(".nPL-show").html(`<select onchange="location = this.value;" id="nPL_select">${this.arr.map((t,n)=>`<option value="${t.link}" ${n===e?"selected":""}>${t.title}</option>`).join("")}</select><div class="inner_nPL">${r}${l}</div>`)
 		}
 	},
