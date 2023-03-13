@@ -7,13 +7,7 @@ const nPLPro = {
       return itemUrl === currentUrl;
     });
 
-      if (-1 !== e) {
-			let n = e + 1,
-				i = e - 1,
-				r = "",
-				l = "";
-
-      if (-1 !== e) {
+      		if (-1 !== e) {
 			let n = e + 1,
 				i = e - 1,
 				r = "",
