@@ -8,8 +8,8 @@ const nPLPro = {
     });
 
     if (currentIndex !== -1) {
-      let prevIndex = currentIndex - 1;
-      let nextIndex = currentIndex + 1;
+      let prevIndex = currentIndex + 1;
+      let nextIndex = currentIndex - 1;
       let prevHtml = "";
       let nextHtml = "";
 
