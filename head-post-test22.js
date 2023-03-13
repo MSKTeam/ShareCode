@@ -7,15 +7,15 @@ const nPLPro = {
       return itemUrl === currentUrl;
     });
       if (currentIndex !== -1) {
-      let nextIndex = currentIndex + 1;
-      let prevIndex = currentIndex - 1;
+      let nextIndex = currentIndex - 1;
+      let prevIndex = currentIndex + 1;
       let nextHtml = "";
       let prevHtml = "";
       if (nextIndex < this.arr.length) {
-        nextHtml = `<a href="${this.arr[nextIndex].link}">‹ Trước kia</a>`;
+        nextHtml = `<a href="${this.arr[nextIndex].link}">Kế tiếp ›</a>`;
       }
       if (prevIndex >= 0) {
-        prevHtml = `<a href="${this.arr[prevIndex].link}">Kế tiếp ›</a>`;
+        prevHtml = `<a href="${this.arr[prevIndex].link}">‹ Trước kia</a>`;
       }
       jQuery(".nPL-show").html(`
         <select onchange="location = this.value;" id="nPL_select">
