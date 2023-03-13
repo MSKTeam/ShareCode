@@ -6,16 +6,16 @@ const nPLPro = {
       let itemUrl = item.link.split("?")[0];
       return itemUrl === currentUrl;
     });
-      if (currentIndex !== -1) {
-      let nextIndex = currentIndex - 1;
-      let prevIndex = currentIndex + 1;
+if (currentIndex !== -1) {
+      let nextIndex = currentIndex + 1;
+      let prevIndex = currentIndex - 1;
       let nextHtml = "";
       let prevHtml = "";
       if (nextIndex < this.arr.length) {
-        nextHtml = `<a href="${this.arr[nextIndex].link}">Kế tiếp ›</a>`;
+        nextHtml = `<a href="${this.arr[nextIndex].link}">‹ Trước kia</a>`;
       }
       if (prevIndex >= 0) {
-        prevHtml = `<a href="${this.arr[prevIndex].link}">‹ Trước kia</a>`;
+        prevHtml = `<a href="${this.arr[prevIndex].link}">Kế tiếp ›</a>`;
       }
       jQuery(".nPL-show").html(`
         <select onchange="location = this.value;" id="nPL_select">
