@@ -8,17 +8,17 @@ const nPLPro = {
     });
 
     if (currentIndex !== -1) {
-      let prevIndex = currentIndex + 1;
-      let nextIndex = currentIndex - 1;
+      let prevIndex = currentIndex - 1;
+      let nextIndex = currentIndex + 1;
       let prevHtml = "";
       let nextHtml = "";
 
       if (nextIndex < this.arr.length) {
-        nextHtml = `<a href="${this.arr[nextIndex].link}">Kế tiếp ›</a>`;
+        nextHtml = `<a href="${this.arr[nextIndex].link}">‹ Trước kia</a>`;
       }
 
       if (prevIndex >= 0) {
-        prevHtml = `<a href="${this.arr[prevIndex].link}">‹ Trước kia</a>`;
+        prevHtml = `<a href="${this.arr[prevIndex].link}">Kế tiếp ›</a>`;
       }
 
       jQuery(".nPL-show").html(`
