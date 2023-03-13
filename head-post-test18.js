@@ -6,15 +6,14 @@ const nPLPro = {
       let itemUrl = item.link.split("?")[0];
       return itemUrl === currentUrl;
     });
-
-      		if (-1 !== e) {
-			let n = e + 1,
-				i = e - 1,
-				r = "",
-				l = "";
-			n >= 0 && (r = `<a href="${this.arr[n].link}">‹ Trước kia</a>`), i < this.arr.length && (l = `<a href="${this.arr[i].link}">Kế tiếp ›</a>`), jQuery(".nPL-show").html(`<select onchange="location = this.value;" id="nPL_select">${this.arr.map((t,n)=>`<option value="${t.link}" ${n===e?"selected":""}>${t.title}</option>`).join("")}</select><div class="inner_nPL">${r}${l}</div>`)
-		}
-  },
+    if (-1 !== e) {
+    let n = e + 1,
+    i = e - 1,
+    r = "",
+    l = "";
+    n >= 0 && (r = `<a href="${this.arr[n].link}">‹ Trước kia</a>`), i < this.arr.length && (l = `<a href="${this.arr[i].link}">Kế tiếp ›</a>`), jQuery(".nPL-show").html(`<select onchange="location = this.value;" id="nPL_select">${this.arr.map((t,n)=>`<option value="${t.link}" ${n===e?"selected":""}>${t.title}</option>`).join("")}</select><div class="inner_nPL">${r}${l}</div>`)
+  }
+},
   create: function(category, startIndexes = []) {
     let promises = startIndexes.map(startIndex => {
       let url = `/feeds/posts/summary/-/${category}?alt=json-in-script&start-index=${startIndex}&max-results=150`;
