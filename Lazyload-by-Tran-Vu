@@ -1,0 +1,21 @@
+<script async='async' type='text/javascript'>
+const content = `<data:post.body/>`;
+</script>
+
+<script async='async' type='text/javascript'>/*<![CDATA[*/
+window.addEventListener('load',function(){
+document.getElementsByClassName("check-box")[0].innerHTML = content;
+const imgTags = document.querySelectorAll(".check-box img");
+if (imgTags.length > 0) {
+  imgTags.forEach((imgTag) => {
+    if (imgTag.hasAttribute("src")) {
+      imgTag.setAttribute('data-src', imgTag.getAttribute('src'));
+      imgTag.removeAttribute('src');
+      imgTag.classList.add('lazyload');
+     }
+   });
+  }
+});
+/*]]>*/</script>
+
+<script src='https://cdn.jsdelivr.net/gh/MSKTeam/ShareCode@main/lazysizes(5.3.2).js' type='text/javascript'/>
