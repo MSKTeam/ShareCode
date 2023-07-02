@@ -1,0 +1,10 @@
+Instant web page loading for zeistmanga by Vũ Trần
+
+<--- Lazyload --->
+Lazyload: 
+https://raw.githubusercontent.com/MSKTeam/ShareCode/main/Lazyload-by-Tran-Vu
+<--- Prefetch --->
+Prefetch code:
+<script src='https://cdn.jsdelivr.net/gh/MSKTeam/Storage-Code@main/loading-speed.js' type='text/javascript'/>
+Prefetch next/prev:
+https://raw.githubusercontent.com/MSKTeam/ShareCode/main/nPLPro%20by%20Vutran
