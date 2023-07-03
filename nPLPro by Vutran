@@ -1,10 +1,97 @@
-<script defer type='text/javascript'>/*<![CDATA[*/
-const nPLPro={arr:[],compile:function(){let t=window.location.href.split("?")[0],e=this.arr.findIndex(e=>e.link.split("?")[0]===t);if(-1!==e){let n=e+1,i=e-1,r="",l="";n<this.arr.length&&(r=<a href="${this.arr[n].link}">‹ Trước kia</a>),i>=0&&(l=<a href="${this.arr[i].link}">Kế tiếp ›</a>),jQuery(".nPL-show").html(<select onchange="location = this.value;"class="nPL_select">${this.arr.map((t,n)=><option value="${t.link}"${n===e?"selected":""}>${t.title}</option>).join("")}</select><div class="inner_nPL">${l}${r}</div>);const head=document.querySelector('head');const link1=document.createElement('link');link1.href=this.arr[n].link;link1.rel='prefetch';link1.as='document';head.appendChild(link1);const link2=document.createElement('link');link2.href=this.arr[i].link;link2.rel='prefetch';link2.as='document';head.appendChild(link2);}},create:function(t,e=[]){Promise.all(e.map(e=>{let n=/feeds/posts/summary/-/${t}?alt=json-in-script&start-index=${e}&max-results=150;return jQuery.ajax({type:"get",url:n,dataType:"jsonp"}).promise()})).then(t=>{t.forEach(t=>{"entry"in t.feed&&t.feed.entry.forEach(t=>{let e=t.link.find(t=>"alternate"===t.rel).href.split("?")[0];this.arr.push({title:t.title.$t,link:e})})}),this.arr.length>0?this.compile():console.log("Error: no entries found.")}).catch(t=>console.log(t))},run:function(t,e=[]){"function"==typeof jQuery&&document.getElementById("nPL")?this.create(t,e):console.log("Error: not function or element not found.")}};
-/*]]>*/
+<script type='text/javascript'>
 window.addEventListener(&#39;load&#39;,function(){
  nPLPro.run(&#39;<data:label.name/>&#39;, [2, 152, 302]);
 });
 </script>
+<script type='text/javascript'>/*<![CDATA[*/
+const nPLPro = {
+  arr: [],
+  compile: function () {
+    const currentUrl = window.location.href.split("?")[0];
+    const currentIndex = this.arr.findIndex(item => item.link.split("?")[0] === currentUrl);
+
+    if (currentIndex !== -1) {
+      const nextIndex = currentIndex + 1;
+      const prevIndex = currentIndex - 1;
+      let prevLink = "";
+      let nextLink = "";
+
+      if (prevIndex >= 0) {
+        prevLink = `<a href="${this.arr[prevIndex].link}">Kế tiếp ›</a>`;
+      }
+
+      if (nextIndex < this.arr.length) {
+        nextLink = `<a href="${this.arr[nextIndex].link}">‹ Trước kia</a>`;
+      }
+
+      const optionsHtml = this.arr.map((item, index) =>
+        `<option value="${item.link}" ${index === currentIndex ? 'selected' : ''}>${item.title}</option>`
+      ).join("");
+
+      const selectHtml = `<select onchange="location = this.value;" class="nPL_select">${optionsHtml}</select>`;
+      const innerHtml = `<div class="inner_nPL">${prevLink}${nextLink}</div>`;
+
+      jQuery(".nPL-show").html(selectHtml + innerHtml);
+
+      const head = document.querySelector("head");
+
+      if (nextIndex < this.arr.length) {
+        const nextLink = document.createElement("link");
+        nextLink.href = this.arr[nextIndex].link;
+        nextLink.rel = "prefetch";
+        nextLink.as = "document";
+        head.appendChild(nextLink);
+      }
+
+      if (prevIndex >= 0) {
+        const prevLink = document.createElement("link");
+        prevLink.href = this.arr[prevIndex].link;
+        prevLink.rel = "prefetch";
+        prevLink.as = "document";
+        head.appendChild(prevLink);
+      }
+    }
+  },
+  create: function (t, e = []) {
+    const promises = e.map(startIndex => {
+      const url = `/feeds/posts/summary/-/${t}?alt=json-in-script&start-index=${startIndex}&max-results=150`;
+      return jQuery.ajax({
+        type: "get",
+        url: url,
+        dataType: "jsonp"
+      }).promise();
+    });
+
+    Promise.all(promises)
+      .then(responses => {
+        responses.forEach(response => {
+          if ("entry" in response.feed) {
+            response.feed.entry.forEach(entry => {
+              const link = entry.link.find(item => item.rel === "alternate").href.split("?")[0];
+              this.arr.push({ title: entry.title.$t, link: link });
+            });
+          }
+        });
+
+        if (this.arr.length > 0) {
+          this.compile();
+        } else {
+          console.log("Error: no entries found.");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },
+  run: function (t, e = []) {
+    if (typeof jQuery === "function" && document.getElementById("nPL")) {
+      this.create(t, e);
+    } else {
+      console.log("Error: jQuery is not available or element not found.");
+    }
+  }
+};
+/*]]>*/</script>
 <div class='nPL-show' id='nPL'> => Top
 <div class='nPL-show' id='nPL2'> => Bottom
 
