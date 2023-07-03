@@ -94,7 +94,8 @@ const nPLPro = {
 /*]]>*/</script>
 <div class='nPL-show' id='nPL'> => Top
 <div class='nPL-show' id='nPL2'> => Bottom
-
+CSS:
+.inner_nPL a:first-child{order: 1;}
 P/s:
 The code has removed the 150 post limit, you can easily increase it as follows:
  nPLPro.run(&#39;<data:label.name/>&#39;, [2, 152, 302]);
