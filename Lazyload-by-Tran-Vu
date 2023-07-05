@@ -12,8 +12,6 @@ if (imgTags.length > 0) {
       imgTag.setAttribute('data-src', imgTag.getAttribute('src'));
       imgTag.removeAttribute('src');
       imgTag.classList.add('lazyload');
-      imgTag.setAttribute("data-src", 
-      imgTag.getAttribute("data-src").replace("s1600", "s1600-rw"));
      }
    });
   }
