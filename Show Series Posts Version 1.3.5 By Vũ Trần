@@ -14,7 +14,7 @@ If you are on page 3: Series?start-index=7&max-results=3
 //*** END ***//
 
 <style>
-/*** Show Series Posts Version 1.3.1 By Vũ Trần ***/
+/*** Show Series Posts Version 1.3.5 By Vũ Trần ***/
   
   /* Setting */
   .Hot-tranvu::before{content: "HOT";background: orangered}
@@ -275,7 +275,7 @@ ul.Chapter-list li a {
     max-width:53%
   }
 }
-/*** Show Series Posts Version 1.3.1 By Vũ Trần - END ***/
+/*** Show Series Posts Version 1.3.5 By Vũ Trần - END ***/
 </style>
 
   <div id="mainnnv" style="display: none;"></div>
@@ -283,7 +283,7 @@ ul.Chapter-list li a {
   <div id="phantrannnv" style="display: none;"></div>
 
 <script async="">
-//*** Show Series Posts Version 1.3.1 By Vũ Trần ***//
+//*** Show Series Posts Version 1.3.5 By Vũ Trần ***//
 var update = { mainItem: ["Series"] };
 update.run = function (category, page, num) {
   var start = (page - 1) * num + 1;
@@ -544,5 +544,5 @@ function getTimeAgo(dateString) {
         childList: true
     });
 });
-//*** Show Series Posts Version 1.3.1 By Vũ Trần - END ***//
+//*** Show Series Posts Version 1.3.5 By Vũ Trần - END ***//
 </script>
