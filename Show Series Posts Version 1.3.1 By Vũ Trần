@@ -27,7 +27,8 @@ If you are on page 3: Series?start-index=7&max-results=3
   .in-progress-tranvu::before{content: "TIẾN HÀNH";top: 17px;left: -24px;background: #f7b500}
   .completed-tranvu::before{content: "HOÀN THÀNH";top: 19px;left: -27px;background: #15b33d}
   /* END */
-  
+
+  #getlabel {display:none}
   .Hot-tranvu::before,.New-tranvu::before{
     color: white;
     font-size: 10px;
