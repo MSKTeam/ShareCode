@@ -1,0 +1,193 @@
+<style>
+  .novel-label{
+    border: 1px solid #dadbdd;
+    margin-bottom: 20px;
+    border-radius: 5px
+  }
+  .name-novel{
+    background-color: #f4f5f6;
+    padding: 10px;
+    font-size: 13px;
+    color: black;
+    border-bottom: 1px solid #dadbdd;
+    padding-left: 15px
+  }
+  .option-novel{padding: 10px;
+    display: flex;
+    gap: 10px
+  }
+  .option-novel img{
+  height: 170px!important;
+    width: 115px!important;
+    border-radius:3px
+  }
+  .chapter-novel{
+    width:100%;
+    max-height: 230px;
+    overflow: auto;
+    overflow-x: hidden
+  }
+  .chapter-novel a{
+    background: #f4f5f6;
+    padding: 4px 7px;
+    border-radius: 5px;
+    margin-right: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    border: 1px solid #dadbdd;
+}
+  .chapter-novel a span:first-child{
+    padding: 5px 7px;
+    font-size: 12px
+    
+  }
+    .chapter-novel a span:last-child{
+    font-style: italic;
+    padding: 6px 15px;
+    font-size:11px;
+    color: gray
+  }
+  @media screen and (max-width:888px){
+    .option-novel{display:block!important}
+    .option-novel img{margin-bottom:10px;margin-left: auto;margin-right: auto;display:grid}
+    .name-novel{text-align:center;padding-left: 45px;padding-right: 45px}
+  }
+  .option-novel .separator{display:block!important}
+  .option-novel .separator a{padding:0!important}
+  .chapter-novel a:visited span:first-child {color: gray}
+  .dark-mode .chapter-novel a{background-color: #333;border: 1px solid #222;}
+  .dark-mode .name-novel{background-color: #333;border-bottom: 1px solid #333;color:white}
+  .dark-mode .novel-label{border: 1px solid #333}
+  .chapter-novel a:hover span:first-child{color:#366ad3}
+</style>
+
+<!--Volume X-->
+<div class="novel-label" label="label">
+<div class="name-novel">Volume X</div>
+<div class="option-novel">
+<!--Image-->
+
+<!--Image-->
+</div></div>
+
+<script async>
+// Hàm lấy bài đăng từ API
+async function getPosts(label, startIndex) {
+  const maxResults = 10;
+  const url = `/feeds/posts/default/-/${label}?alt=json&max-results=${maxResults}&start-index=${startIndex}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.feed.entry || [];
+}
+
+// Hàm tạo thẻ a chứa thông tin bài đăng
+function createPostLink(post) {
+  const link = post.link.find(link => link.rel === 'alternate');
+  const postLink = link ? link.href : '#'; // Nếu không tìm thấy liên kết, sẽ tạo liên kết không hợp lệ
+  const postTitle = post.title.$t;
+
+  const postLinkElement = document.createElement('a');
+  postLinkElement.href = postLink;
+  postLinkElement.textContent = postTitle;
+  return postLinkElement;
+}
+
+// Hàm kiểm tra xem bài đăng có chứa nhãn "Series" hay không
+function containsSeriesLabel(post) {
+  const labels = post.category.map(category => category.term);
+  return labels.includes('Series');
+}
+
+// Hàm tính thời gian trôi qua từ ngày đăng bài
+function getTimeAgo(publishedDate) {
+  const now = new Date();
+  const published = new Date(publishedDate);
+  const diffInSeconds = Math.floor((now - published) / 1000);
+
+  if (diffInSeconds < 60) {
+    return `${diffInSeconds} giây trước`;
+  } else if (diffInSeconds < 3600) {
+    const minutes = Math.floor(diffInSeconds / 60);
+    return `${minutes} phút trước`;
+  } else if (diffInSeconds < 86400) {
+    const hours = Math.floor(diffInSeconds / 3600);
+    return `${hours} giờ trước`;
+  } else if (diffInSeconds < 604800) {
+    const days = Math.floor(diffInSeconds / 86400);
+    return `${days} ngày trước`;
+  } else if (diffInSeconds < 2592000) {
+    const weeks = Math.floor(diffInSeconds / 604800);
+    return `${weeks} tuần trước`;
+  } else if (diffInSeconds < 31536000) {
+    const months = Math.floor(diffInSeconds / 2592000);
+    return `${months} tháng trước`;
+  } else {
+    const years = Math.floor(diffInSeconds / 31536000);
+    return `${years} năm trước`;
+  }
+}
+
+// Hàm tạo các liên kết chương mới cho một class="novel-label"
+async function createChapterLinksForNovelLabel(novelLabel) {
+  const labelValue = novelLabel.getAttribute('label');
+  const chapterNovel = document.createElement('div');
+  chapterNovel.classList.add('chapter-novel'); // Thêm lớp "chapter-novel" vào phần tử
+
+  const optionNovel = novelLabel.querySelector('.option-novel');
+  optionNovel.appendChild(chapterNovel); // Chèn phần tử "chapter-novel" vào "option-novel"
+
+  if (chapterNovel) {
+    const maxResults = 10;
+    let startIndex = 1;
+    let posts = [];
+
+    do {
+      posts = await getPosts(labelValue, startIndex);
+
+      for (const post of posts) {
+        if (!containsSeriesLabel(post)) {
+          const link = createPostLink(post);
+
+          const timeAgo = document.createElement('span');
+          timeAgo.textContent = getTimeAgo(post.published.$t);
+
+          const titleSpan = document.createElement('span');
+          titleSpan.textContent = post.title.$t;
+
+          const postTitle = post.title.$t;
+          
+          const chapterLink = document.createElement('a');
+          chapterLink.href = link.href;
+          chapterLink.title = 'Đọc ngay ' + postTitle;
+          chapterLink.appendChild(titleSpan);
+          chapterLink.appendChild(timeAgo);
+
+          chapterNovel.appendChild(chapterLink);
+        }
+      }
+
+      startIndex += maxResults; // Tăng giá trị start-index để lấy các bài đăng tiếp theo
+
+      // Nếu số lượng bài đăng trong nhãn ít hơn maxResults, thoát khỏi vòng lặp
+      if (posts.length < maxResults) {
+        break;
+      }
+
+    } while (posts.length > 0);
+  }
+}
+
+// Hàm tạo các liên kết chương mới cho tất cả các class="novel-label"
+async function createChapterLinksForAllNovelLabels() {
+  const novelLabels = document.querySelectorAll('.novel-label');
+  for (const novelLabel of novelLabels) {
+    await createChapterLinksForNovelLabel(novelLabel);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  createChapterLinksForAllNovelLabels();
+});
+</script>
