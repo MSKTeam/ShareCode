@@ -1,7 +1,7 @@
 Important note: the code has a huge disadvantage, just try the code and you will know how it is =)))))))
 > Only people who are really good at coding and figuring out how to fix the downside. makes this a great feature to implement Previous/Next Chapter functionality.
 > This method can be used to fix the error: Using JavaScript modules: You can use JavaScript modules to split variables into separate scopes between pages. This way, each page can have its own variables without causing conflicts with other pages.
-Final note: I will not support the error correction process (because I am afraid of losing sleep anymore).
+Final note: I will not participate in any process to overcome the disadvantages that the code causes (for fear of losing sleep :)
 
 CODE:
 <div class='nPL-show' id='nPL'/>
