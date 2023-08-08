@@ -12,7 +12,7 @@ JS:
 1.
 <script defer='defer' type='text/javascript'>
 window.addEventListener(`load`, function () {
-  const imgTags = `<data:post.body/>`;
+  const imgTags = `<data:post.body.cssEscaped/>`;
   ImageManager.loadImages(imgTags);
 });
 </script>
