@@ -1,6 +1,6 @@
 // **** Simple image protection system 1.0 by Vũ Trần **** //
 HTML:
-<div class='check-box' id='canvas-chapter'/>
+<div id='canvas-chapter'/>
 
 CSS:
   .canvas-wrapper {margin: 0 auto}
