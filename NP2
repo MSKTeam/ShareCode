@@ -1,4 +1,7 @@
+Applies well to the zeistmanga version
 
+CSS:
+.inner_nPL .evclick:first-child{order: 1}
 CODE:
 <div class='nPL-show' id='nPL'/> { Top }
 <div class='nPL-show' id='nPL2'/> { Bottom }
