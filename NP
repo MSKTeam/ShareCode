@@ -1,0 +1,142 @@
+
+CODE:
+<div class='nPL-show' id='nPL'/> { Top }
+<div class='nPL-show' id='nPL2'/> { Bottom }
+
+<div class='check-box' expr:label='data:label.name'/></div>
+<div class='check-box' label='label manga'/></div>
+
+<script type='module'>/*<![CDATA[*/
+const nPLPro ={compile:compile,create:create,run:run};
+$('.check-box').each(function () {const labelValue = $(this).attr('label');nPLPro.run(labelValue)});
+/*]]>*/</script>
+
+<script type='text/javascript'>/*<![CDATA[*/
+function create(t, e = [], startIndex = 1) {
+if (nPLProConfig.arr.length === 0) {
+    const maxResults = 50;
+    const feedUrl = `/feeds/posts/summary/-/${t}?alt=json-in-script&start-index=${startIndex}&max-results=${maxResults}`;
+
+        jQuery.ajax({
+            type: "get",
+            url: feedUrl,
+            dataType: "jsonp",
+        }).done((data) => {
+            if ("entry" in data.feed) {
+                data.feed.entry.forEach((post) => {
+                    const hasSeriesLabel = post.category.some((category) => category.term === "Series");
+                    if (!hasSeriesLabel) {
+                        let link = post.link.find((item) => item.rel === "alternate").href.split("?")[0];
+                        nPLProConfig.addIfNotExists(post.title.$t, link);
+                    } else {
+                        jQuery(".infoSeries").attr("href", post.link.find(item => item.rel === "alternate").href.split("?")[0]);
+                    }
+                });
+                if (data.feed.entry.length === maxResults) {
+                    startIndex += maxResults;
+                    this.create(t, e, startIndex);
+                } else {
+                    this.compile();
+                }
+            } else {
+                console.log("Error: no entries found.");
+            }
+        }).fail((error) => {
+            console.log(error);
+        });
+  } else {
+      var nPL = document.getElementById("nPL");
+      var inner_nPL = nPL.querySelector(".inner_nPL");
+      if (inner_nPL) {} else {compile()}
+   }
+}
+
+function run(t, e = []) {
+    if (typeof jQuery === "function" && document.getElementById("nPL")) {
+        this.create(t, e);
+    } 
+}
+
+class NPLProConfig {
+    constructor() {
+        this.arr = [];
+    }
+
+    addIfNotExists(title, link) {
+        const exists = this.arr.some(item => item.link === link);
+        if (!exists) {
+            this.arr.push({
+                title: title,
+                link: link,
+            });
+        }
+    }
+}
+
+let nPLProConfig = new NPLProConfig();
+
+function compile() {
+    let t = window.location.href.split("?")[0],
+    e = nPLProConfig.arr.findIndex((e) => e.link.split("?")[0] === t);
+
+    console.log(nPLProConfig.arr);
+
+    if (-1 !== e) {
+        let n = e + 1,
+            i = e - 1,
+            r = "",
+            l = "";
+
+        if (n < nPLProConfig.arr.length) {
+            r = `<a class="evclick" onclick="navigate('${nPLProConfig.arr[n].link}'); return false;"><span>&#8249;</span> Trước kia</a>`;
+        }
+        
+        if (i >= 0) {
+            l = `<a class="evclick" onclick="navigate('${nPLProConfig.arr[i].link}'); return false;">Kế tiếp <span>&#8250;</span></a>`;
+        }
+        
+        jQuery(".nPL-show").html(`<select onchange="navigate(this.value)" class="nPL_select">${nPLProConfig.arr.map((t, n) => `<option value="${t.link}" ${n === e ? "selected" : ""}>${t.title}</option>`).join("")}</select><div class="inner_nPL">${l}${r}</div>`);
+
+        if (prefetchLinksArray.length === 0) {prefetchLinks()}
+        console.log(prefetchLinksArray)
+    }
+}
+
+const prefetchLinksArray = [];
+
+function prefetchLinks() {
+    for (let j = 0; j < nPLProConfig.arr.length; j++) {
+        const link = nPLProConfig.arr[j].link;
+        const prefetchLink = document.createElement("link");
+        prefetchLink.href = link;
+        prefetchLink.rel = "prefetch";
+        document.head.appendChild(prefetchLink);
+        prefetchLinksArray.push(prefetchLink);
+    }
+}
+
+function navigate(url) {
+    fetchPage(url, function(responseText) {
+        const previousInfoSeriesHref = jQuery(".infoSeries").attr("href");
+        history.pushState(null, null, url);
+        document.open();
+        document.write(responseText);
+        document.close();
+        jQuery(".infoSeries").attr("href", previousInfoSeriesHref);
+        window.scrollTo(0, 0);
+        create();
+        for (let i = 0; i < prefetchLinksArray.length; i++) {document.head.appendChild(prefetchLinksArray[i].cloneNode(true))}
+    });
+}
+
+function fetchPage(url, callback) {fetch(url).then((response) => response.text()).then((data) => callback(data)).catch((error) => console.log(error))}
+
+window.addEventListener("popstate", function() {
+    fetchPage(window.location.href, function(responseText) {
+        history.pushState(null, null, url);
+        document.open();
+        document.write(responseText);
+        document.close();
+    });
+});
+/*]]>*/</script>
