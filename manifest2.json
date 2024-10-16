@@ -1,0 +1,317 @@
+{
+  "name": "MangaDex",
+  "short_name": "MangaDex",
+  "start_url": "https://mangadex.org",
+  "display": "standalone",
+  "background_color": "#2c2c2c",
+  "lang": "en",
+  "scope": "/",
+  "description": "Read manga online for free at MangaDex with no ads, high quality images and support scanlation groups!",
+  "categories": [
+    "books",
+    "entertainment",
+    "magazines",
+    "social"
+  ],
+  "id": "/",
+  "prefer_related_applications": false,
+  "protocol_handlers": [
+    {
+      "protocol": "web+mangadex",
+      "url": "https://mangadex.org/%s"
+    }
+  ],
+  "related_applications": [],
+  "dir": "ltr",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui",
+    "fullscreen",
+    "browser"
+  ],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "orientation": "portrait-primary",
+  "theme_color": "#2c2c2c",
+  "icons": [
+    {
+      "src": "/pwa/icons/icon-180.png",
+      "type": "image/png",
+      "sizes": "180x180",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa/icons/icon-180.png",
+      "type": "image/png",
+      "sizes": "180x180",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/pwa/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/pwa/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/pwa/screenshots/desktop-home.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Home page"
+    },
+    {
+      "src": "/pwa/screenshots/desktop-title.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Title page"
+    },
+    {
+      "src": "/pwa/screenshots/desktop-title.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Reader"
+    },
+    {
+      "src": "/pwa/screenshots/ios-home.png",
+      "sizes": "1170x2532",
+      "type": "image/png",
+      "platform": "ios",
+      "label": "Home page"
+    },
+    {
+      "src": "/pwa/screenshots/ios-title.png",
+      "sizes": "1170x2532",
+      "type": "image/png",
+      "platform": "ios",
+      "label": "Title page"
+    },
+    {
+      "src": "/pwa/screenshots/ios-reader.png",
+      "sizes": "1170x2532",
+      "type": "image/png",
+      "platform": "ios",
+      "label": "Reader"
+    },
+    {
+      "src": "/pwa/screenshots/ios-reader-menu.png",
+      "sizes": "1170x2532",
+      "type": "image/png",
+      "platform": "ios",
+      "label": "Reader menu"
+    },
+    {
+      "src": "/pwa/screenshots/android-home.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "platform": "android",
+      "label": "Home page"
+    },
+    {
+      "src": "/pwa/screenshots/android-title.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "platform": "android",
+      "label": "Title page"
+    },
+    {
+      "src": "/pwa/screenshots/android-reader.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "platform": "android",
+      "label": "Reader"
+    },
+    {
+      "src": "/pwa/screenshots/android-reader-menu.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "platform": "android",
+      "label": "Reader menu"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Home",
+      "short_name": "Home",
+      "description": "Home page",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/pwa/shortcuts/home.svg",
+          "type": "image/svg+xml",
+          "sizes": "512x512",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/home.svg.256.png",
+          "type": "image/png",
+          "sizes": "256x256",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/home.svg.128.png",
+          "type": "image/png",
+          "sizes": "128x128",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/home.svg.96.png",
+          "type": "image/png",
+          "sizes": "96x96",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Updates",
+      "short_name": "Updates",
+      "description": "New chapter updates from followed titles",
+      "url": "/titles/feed",
+      "icons": [
+        {
+          "src": "/pwa/shortcuts/book.svg",
+          "type": "image/svg+xml",
+          "sizes": "512x512",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/book.svg.256.png",
+          "type": "image/png",
+          "sizes": "256x256",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/book.svg.128.png",
+          "type": "image/png",
+          "sizes": "128x128",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/book.svg.96.png",
+          "type": "image/png",
+          "sizes": "96x96",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "short_name": "Search",
+      "description": "Search MangaDex",
+      "url": "/titles",
+      "icons": [
+        {
+          "src": "/pwa/shortcuts/search.svg",
+          "type": "image/svg+xml",
+          "sizes": "512x512",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/search.svg.256.png",
+          "type": "image/png",
+          "sizes": "256x256",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/search.svg.128.png",
+          "type": "image/png",
+          "sizes": "128x128",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/search.svg.96.png",
+          "type": "image/png",
+          "sizes": "96x96",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Social",
+      "short_name": "Social",
+      "description": "Your groups, followed groups and followed lists",
+      "url": "/social",
+      "icons": [
+        {
+          "src": "/pwa/shortcuts/people.svg",
+          "type": "image/svg+xml",
+          "sizes": "512x512",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/people.svg.256.png",
+          "type": "image/png",
+          "sizes": "256x256",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/people.svg.128.png",
+          "type": "image/png",
+          "sizes": "128x128",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/people.svg.96.png",
+          "type": "image/png",
+          "sizes": "96x96",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Library",
+      "short_name": "Library",
+      "description": "Library, reading history, and MDLists",
+      "url": "/library",
+      "icons": [
+        {
+          "src": "/pwa/shortcuts/book.svg",
+          "type": "image/svg+xml",
+          "sizes": "512x512",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/book.svg.256.png",
+          "type": "image/png",
+          "sizes": "256x256",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/book.svg.128.png",
+          "type": "image/png",
+          "sizes": "128x128",
+          "purpose": "any"
+        },
+        {
+          "src": "/pwa/shortcuts/book.svg.96.png",
+          "type": "image/png",
+          "sizes": "96x96",
+          "purpose": "any"
+        }
+      ]
+    }
+  ]
+}
