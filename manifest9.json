@@ -26,7 +26,7 @@
       "name": "Trang chủ",
       "short_name": "Trang chủ",
       "description": "Trang chủ",
-      "url": "/",  // Địa chỉ liên kết 1
+      "url": "/",
       "icons": [
         {
           "src": "https://cdn-icons-png.flaticon.com/512/25/25694.png",
