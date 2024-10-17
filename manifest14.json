@@ -8,7 +8,7 @@
   "protocol_handlers": [
     {
       "protocol": "web+mskmanga",
-      "url": "https://test-mskteam.blogspot.com/%s"
+      "url": "/"
     }
   ],
   "categories": [
