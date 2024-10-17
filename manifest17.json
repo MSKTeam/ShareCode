@@ -8,7 +8,7 @@
   "id": "/",
   "protocol_handlers": [
     {
-      "protocol": "web+mskmanga",
+      "protocol": "web+homemsk",
       "url": "/"
     }
   ],
@@ -30,12 +30,12 @@
   "theme_color": "#2c2c2c",
   "icons": [
     {
-      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgzvwd6H7hyphenhyphenjD5O4VeS08yew4tJla10OVrfEKUbp9vsu2xOTyRXyBN_sR8ILZKtBbY9lGasIGxBsrLXKTUU667HE6Zvd_VOI8P-pcvbuy1QqwmpV6LoiiZrUAExSUO6tAcgWbQ9DNOA4Vp8p8N7dOJKGE2izb8hXRz5FZ70OJStn3hmwq1RZfxCOKkqFoUA/w198/277309917_4323228321113734_3822517909624484350_n.png",
+      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2gUgqPjYyv1NYmwx8tPrNHXzOA4tlpaxDg-07GX_IbcSplDlz-TVprwlYbtK_ahbvWWux_303MXFgq1ylqneC21oKywGzgmRkBD-CUaAkQoDaLd8vX_gusEEo9PQTWKrYva6UHb9tbZAOLNisTzsYQLH75-KwXCCkRZNLzkIjHGgt9_vS1rW1luF17S7y/s1600/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgzvwd6H7hyphenhyphenjD5O4VeS08yew4tJla10OVrfEKUbp9vsu2xOTyRXyBN_sR8ILZKtBbY9lGasIGxBsrLXKTUU667HE6Zvd_VOI8P-pcvbuy1QqwmpV6LoiiZrUAExSUO6tAcgWbQ9DNOA4Vp8p8N7dOJKGE2izb8hXRz5FZ70OJStn3hmwq1RZfxCOKkqFoUA/w198/277309917_4323228321113734_3822517909624484350_n.png",
+      "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja2J-tfCtXFUkYym5mdgk8Iy6X3bj_bvydiBC-4xB9blyVoJmegA-l3F6_QnWk2KZKzzzLSWTofvRnP_Fx4uuFyzqrpdj8dJA3WJz1F6sLOzK7r6iD0MpPt7taVXfLWzMrdUYWY9RXwJjzdtotrnl12jyzc0hjcL_h79HgQ3CzHvs_JLtw0NPnJTQEuK4L/s1600/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
@@ -48,7 +48,7 @@
       "url": "/",
       "icons": [
         {
-          "src": "https://cdn-icons-png.flaticon.com/512/25/25694.png",
+          "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2gUgqPjYyv1NYmwx8tPrNHXzOA4tlpaxDg-07GX_IbcSplDlz-TVprwlYbtK_ahbvWWux_303MXFgq1ylqneC21oKywGzgmRkBD-CUaAkQoDaLd8vX_gusEEo9PQTWKrYva6UHb9tbZAOLNisTzsYQLH75-KwXCCkRZNLzkIjHGgt9_vS1rW1luF17S7y/s1600/android-chrome-192x192.png",
           "sizes": "192x192",
           "type": "image/png"
         }
