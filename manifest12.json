@@ -5,9 +5,9 @@
   "lang": "vi",
   "display": "standalone",
   "description": "Đọc truyện tranh trực tuyến miễn phí tại MSKManga.",
-   "protocol_handlers": [
+  "protocol_handlers": [
     {
-      "protocol": "web+openmskmanga",
+      "protocol": "web+mskmanga",
       "url": "https://test-mskteam.blogspot.com/%s"
     }
   ],
