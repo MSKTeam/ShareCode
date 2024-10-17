@@ -1,6 +1,6 @@
 {
-  "name": "TEST",
-  "short_name": "TEST",
+  "name": "MSKManga",
+  "short_name": "MSKManga",
   "start_url": "https://test-mskteam.blogspot.com/",
   "lang": "vi",
   "display": "standalone",
@@ -8,8 +8,8 @@
   "id": "/",
   "protocol_handlers": [
     {
-      "protocol": "web+homemsk",
-      "url": "/"
+      "protocol": "web+mskmanga",
+      "url": "https://test-mskteam.blogspot.com/"
     }
   ],
   "categories": [
@@ -45,14 +45,27 @@
       "name": "Trang chủ",
       "short_name": "Trang chủ",
       "description": "Trang chủ",
-      "url": "/",
+      "url": "https://test-mskteam.blogspot.com/",
       "icons": [
         {
-          "src": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2gUgqPjYyv1NYmwx8tPrNHXzOA4tlpaxDg-07GX_IbcSplDlz-TVprwlYbtK_ahbvWWux_303MXFgq1ylqneC21oKywGzgmRkBD-CUaAkQoDaLd8vX_gusEEo9PQTWKrYva6UHb9tbZAOLNisTzsYQLH75-KwXCCkRZNLzkIjHGgt9_vS1rW1luF17S7y/s1600/android-chrome-192x192.png",
+          "src": "https://cdn-icons-png.flaticon.com/512/25/25694.png",
           "sizes": "192x192",
           "type": "image/png"
         }
       ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://images.wallpapersden.com/image/download/mushoku-tensei-hd-roxy-migurdia_bmdpZ2mUmZqaraWkpJRmZ21lrWxnZQ.jpg",
+      "type": "image/jpg",
+      "sizes": "1280x720",
+      "form_factor": "wide"
+    },
+    {
+      "src": "https://image.tmdb.org/t/p/original/T8J9UFUzKK0ybPyEIoBWgOQHoa.jpg",
+      "type": "image/png",
+      "sizes": "1280x720"
     }
   ]
 }
