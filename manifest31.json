@@ -41,7 +41,7 @@
       "url": "https://test-mskteam.blogspot.com/",
       "icons": [
         {
-          "src": "https://api.iconify.design/ic:outline-history.svg?color=rgba(26,88,201)&height=192&width=192",
+          "src": "https://api.iconify.design/ion:home.svg?color=rgba(26,88,201)&height=192&width=192",
           "sizes": "192x192",
           "type": "image/svg"
         }
@@ -50,7 +50,7 @@
     {
       "name": "Theo dõi",
       "short_name": "Theo dõi",
-      "description": "Theo dõi",
+      "description": "Theo dõi những bộ truyện yêu thích <3",
       "url": "https://test-mskteam.blogspot.com/p/theo-doi_24.html",
       "icons": [
         {
@@ -63,24 +63,11 @@
     {
       "name": "Lịch sử",
       "short_name": "Lịch sử",
-      "description": "Lịch sử",
+      "description": "Hiển thị 100 chương truyện đọc gần đây!!!",
       "url": "https://test-mskteam.blogspot.com/p/lich-su_97.html",
       "icons": [
         {
           "src": "https://api.iconify.design/material-symbols:history.svg?color=rgba(26,88,201)&height=192&width=192",
-          "sizes": "192x192",
-          "type": "image/svg"
-        }
-      ]
-    },
-    {
-      "name": "Báo lỗi",
-      "short_name": "Báo lỗi",
-      "description": "Báo lỗi",
-      "url": "https://www.facebook.com/redeusgreyrat2077",
-      "icons": [
-        {
-          "src": "https://api.iconify.design/material-symbols:error.svg?color=rgba(26,88,201)&height=192&width=192",
           "sizes": "192x192",
           "type": "image/svg"
         }
