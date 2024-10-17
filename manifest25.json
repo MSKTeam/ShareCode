@@ -41,7 +41,7 @@
       "url": "https://test-mskteam.blogspot.com/",
       "icons": [
         {
-          "src": "https://api.iconify.design/ic:outline-history.svg?color=rgba(26,%2088,%20201)&height=192%with=192",
+          "src": "https://api.iconify.design/ic:outline-history.svg?color=rgba(26,%2088,%20201)&height=192&width=192",
           "sizes": "192x192",
           "type": "image/svg"
         }
@@ -54,7 +54,7 @@
       "url": "https://test-mskteam.blogspot.com/p/theo-doi_24.html",
       "icons": [
         {
-          "src": "https://api.iconify.design/material-symbols:bookmark.svg?color=rgba(26,%2088,%20201)&height=192%with=192",
+          "src": "https://api.iconify.design/material-symbols:bookmark.svg?color=rgba(26,%2088,%20201)&height=192&width=192",
           "sizes": "192x192",
           "type": "image/svg"
         }
@@ -66,16 +66,19 @@
       "src": "https://images.wallpapersden.com/image/download/mushoku-tensei-hd-roxy-migurdia_bmdpZ2mUmZqaraWkpJRmZ21lrWxnZQ.jpg",
       "type": "image/jpg",
       "sizes": "1280x720",
+      "form_factor": "wide"
     },
     {
       "src": "https://image.tmdb.org/t/p/original/T8J9UFUzKK0ybPyEIoBWgOQHoa.jpg",
       "type": "image/jpg",
       "sizes": "1280x720",
+      "form_factor": "wide"
     },
     {
       "src": "https://images6.alphacoders.com/112/1128080.jpg",
       "type": "image/jpg",
       "sizes": "1280x720",
+      "form_factor": "wide"
     }
   ]
 }
