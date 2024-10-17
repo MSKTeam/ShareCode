@@ -59,26 +59,49 @@
           "type": "image/svg"
         }
       ]
-    }
+    },
+    {
+      "name": "Lịch sử",
+      "short_name": "Lịch sử",
+      "description": "Lịch sử",
+      "url": "https://test-mskteam.blogspot.com/p/lich-su_97.html",
+      "icons": [
+        {
+          "src": "https://api.iconify.design/material-symbols:history.svg?color=rgba(26,%2088,%20201)&height=192&width=192",
+          "sizes": "192x192",
+          "type": "image/svg"
+        }
+      ]
+    },
+    {
+      "name": "Báo lỗi",
+      "short_name": "Báo lỗi",
+      "description": "Báo lỗi",
+      "url": "https://www.facebook.com/redeusgreyrat2077",
+      "icons": [
+        {
+          "src": "https://api.iconify.design/material-symbols:error.svg?color=rgba(26,%2088,%20201)&height=192&width=192",
+          "sizes": "192x192",
+          "type": "image/svg"
+        }
+      ]
+    },
   ],
   "screenshots": [
     {
       "src": "https://images.wallpapersden.com/image/download/mushoku-tensei-hd-roxy-migurdia_bmdpZ2mUmZqaraWkpJRmZ21lrWxnZQ.jpg",
       "type": "image/jpg",
       "sizes": "1280x720",
-      "form_factor": "wide"
     },
     {
       "src": "https://image.tmdb.org/t/p/original/T8J9UFUzKK0ybPyEIoBWgOQHoa.jpg",
       "type": "image/jpg",
       "sizes": "1280x720",
-      "form_factor": "wide"
     },
     {
       "src": "https://images6.alphacoders.com/112/1128080.jpg",
       "type": "image/jpg",
       "sizes": "1280x720",
-      "form_factor": "wide"
     }
   ]
 }
