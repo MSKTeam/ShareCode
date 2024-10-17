@@ -88,7 +88,13 @@
       "form_factor": "wide"
     },
     {
-      "src": "https://images6.alphacoders.com/112/1128080.jpg",
+      "src": "https://images.wallpapersden.com/image/download/mushoku-tensei-hd-roxy-migurdia_bmdpZ2mUmZqaraWkpJRmZ21lrWxnZQ.jpg",
+      "type": "image/jpg",
+      "sizes": "1280x720",
+      "form_factor": "wide"
+    },
+    {
+      "src": "https://image.tmdb.org/t/p/original/T8J9UFUzKK0ybPyEIoBWgOQHoa.jpg",
       "type": "image/jpg",
       "sizes": "1280x720",
       "form_factor": "wide"
