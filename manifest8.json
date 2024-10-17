@@ -1,0 +1,39 @@
+{
+  "name": "TEST",
+  "short_name": "TEST",
+  "start_url": "https://test-mskteam.blogspot.com/",
+  "lang": "vi",
+  "display": "standalone",
+  "description": "Đọc truyện tranh trực tuyến miễn phí tại MSKManga.",
+  "categories": [
+    "books",
+    "entertainment",
+    "magazines",
+    "social"
+  ],
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui",
+    "fullscreen",
+    "browser"
+  ],
+  "orientation": "portrait-primary",
+  "background_color": "#2c2c2c",
+  "theme_color": "#2c2c2c",
+  "shortcuts": [
+    {
+      "name": "Trang chủ",
+      "short_name": "Trang chủ",
+      "description": "Trang chủ",
+      "url": "/",  // Địa chỉ liên kết 1
+      "icons": [
+        {
+          "src": "https://cdn-icons-png.flaticon.com/512/25/25694.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}
