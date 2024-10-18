@@ -6,6 +6,9 @@
   "display": "standalone",
   "id": "/",
   "description": "Đọc truyện tranh trực tuyến miễn phí tại MSKManga. Trải nghiệm ngay những bộ truyện đặc sắc , thú vị và tốc độ làm việc của website!!!",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
   "categories": [
     "books",
     "entertainment",
