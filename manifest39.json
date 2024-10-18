@@ -102,22 +102,26 @@
     {
       "src": "https://images.wallpapersden.com/image/download/mushoku-tensei-hd-roxy-migurdia_bmdpZ2mUmZqaraWkpJRmZ21lrWxnZQ.jpg",
       "type": "image/jpg",
-      "sizes": "1280x720"
+      "sizes": "1280x720",
+      "form_factor": "narrow"
     },
     {
       "src": "https://image.tmdb.org/t/p/original/T8J9UFUzKK0ybPyEIoBWgOQHoa.jpg",
       "type": "image/jpg",
-      "sizes": "1280x720"
+      "sizes": "1280x720",
+      "form_factor": "narrow"
     },
     {
       "src": "https://images.wallpapersden.com/image/download/mushoku-tensei-hd-roxy-migurdia_bmdpZ2mUmZqaraWkpJRmZ21lrWxnZQ.jpg",
       "type": "image/jpg",
-      "sizes": "1280x720"
+      "sizes": "1280x720",
+      "form_factor": "narrow"
     },
     {
       "src": "https://image.tmdb.org/t/p/original/T8J9UFUzKK0ybPyEIoBWgOQHoa.jpg",
       "type": "image/jpg",
-      "sizes": "1280x720"
+      "sizes": "1280x720",
+      "form_factor": "narrow"
     }
   ]
 }
