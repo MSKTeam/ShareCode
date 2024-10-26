@@ -1,0 +1,72 @@
+Ex: <img data-src="" class="lazyload"></img>
+
+    <style>
+        .viewport {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 300px; /* Change the viewport height set */
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px dashed #007BFF;
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+  <div class='viewport'/>
+<script>/*<![CDATA[*/
+(function() {
+    'use strict';
+
+    const lazyloadClass = 'lazyload';
+    const loadedClass = 'lazyloaded';
+    const dataAttribute = 'src';
+    const dataPrefix = 'data-';
+    const marginBottom = 300; // Change the viewport height set
+
+    function isInViewport(element, viewportTop) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top <= (viewportTop + marginBottom) &&
+            rect.bottom >= viewportTop
+        );
+    }
+
+    function lazyLoad(viewportTop) {
+        const lazyElements = document.querySelectorAll(`.${lazyloadClass}`);
+        lazyElements.forEach(element => {
+
+            if (isInViewport(element, viewportTop)) {
+                const dataAttr = `${dataPrefix}${dataAttribute}`;
+                const value = element.getAttribute(dataAttr);
+                if (value) {
+                    element[dataAttribute] = value;
+                    element.removeAttribute(dataAttr);
+                }
+                element.classList.remove(lazyloadClass);
+                element.classList.add(loadedClass);
+            }
+        });
+    }
+
+    function handleScroll() {
+        const viewportTop = 0;
+        lazyLoad(viewportTop);
+    }
+
+    function observeMutations() {
+        const observer = new MutationObserver(() => {
+            const viewportTop = 0;
+            lazyLoad(viewportTop);
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    document.addEventListener('scroll', handleScroll);
+    observeMutations();
+})();
+/*]]>*/</script>
