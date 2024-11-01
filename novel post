@@ -1,0 +1,55 @@
+Note: it preserves the <a> and <div class="separator"> tags. The rest can be converted into <p>.
+example: 
+<div><div><div>Nội dung 1</div></div></div>
+<div><div>Nội dung 2</div></div> 
+====> 
+<p>Nội dung 1</p> 
+<p>Nội dung 2</p>
+
+
+<div class='novel-box' expr:data-post='data:post.body'></div>
+
+function novelpost() {
+    const novelBox = document.querySelector('.novel-box');
+    
+    if (!novelBox) {
+        return;
+    }
+
+    const dataPost = novelBox.getAttribute('data-post');
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = dataPost;
+
+    let resultContent = '';
+
+    const children = tempDiv.children;
+    for (let child of children) {
+        if (child.tagName === 'A') {
+            resultContent += child.outerHTML;
+        } 
+        else if (child.classList.contains('separator')) {
+            const separatorImg = child.querySelector('img');
+            if (separatorImg) {
+                const newSeparator = document.createElement('div');
+                newSeparator.classList.add('separator');
+                const newImg = separatorImg.cloneNode();
+                newImg.setAttribute('title', 'hình ảnh');
+                newImg.setAttribute('aria-label', 'hình ảnh');
+                newSeparator.appendChild(newImg);
+                resultContent += newSeparator.outerHTML;
+            }
+        } 
+        else {
+            const textContent = child.textContent.trim();
+            if (textContent) {
+                resultContent += `<p>${textContent}</p>`;
+            }
+        }
+    }
+    novelBox.innerHTML = resultContent;
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    novelpost();
+});
