@@ -10,44 +10,59 @@ example:
 <div class='novel-box' expr:data-post='data:post.body'></div>
 
 function novelpost() {
-    const novelBox = document.querySelector('.novel-box');
-    
-    if (!novelBox) {
-        return;
-    }
+    const novelBoxes = document.querySelectorAll('.novel-box');
 
-    const dataPost = novelBox.getAttribute('data-post');
+    novelBoxes.forEach(novelBox => {
+        const dataPostHTML = novelBox.getAttribute('data-post');
+        
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = dataPostHTML;
 
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = dataPost;
+        const fragment = document.createDocumentFragment();
 
-    let resultContent = '';
+        function processNode(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                if (node.nodeValue.trim()) {
+                    const paragraph = document.createElement('p');
+                    paragraph.textContent = node.nodeValue.trim();
+                    fragment.appendChild(paragraph);
+                }
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                if (node.tagName === 'A') {
+                    if (node.textContent.trim()) {
+                        fragment.appendChild(node.cloneNode(true));
+                    }
+                } else if (node.tagName === 'DIV' && node.classList.contains('separator')) {
+                    const imgElements = node.getElementsByTagName('img');
 
-    const children = tempDiv.children;
-    for (let child of children) {
-        if (child.tagName === 'A') {
-            resultContent += child.outerHTML;
-        } 
-        else if (child.classList.contains('separator')) {
-            const separatorImg = child.querySelector('img');
-            if (separatorImg) {
-                const newSeparator = document.createElement('div');
-                newSeparator.classList.add('separator');
-                const newImg = separatorImg.cloneNode();
-                newImg.setAttribute('title', 'hình ảnh');
-                newImg.setAttribute('aria-label', 'hình ảnh');
-                newSeparator.appendChild(newImg);
-                resultContent += newSeparator.outerHTML;
-            }
-        } 
-        else {
-            const textContent = child.textContent.trim();
-            if (textContent) {
-                resultContent += `<p>${textContent}</p>`;
+                    if (imgElements.length > 0) {
+                        const newSeparator = document.createElement('div');
+                        newSeparator.className = 'separator';
+
+                        Array.from(imgElements).forEach(img => {
+                            img.setAttribute('title', 'Hình ảnh');
+                            img.setAttribute('aria-label', 'Hình ảnh');
+
+                            if (!img.hasAttribute('loading')) {
+                                img.setAttribute('loading', 'lazy');
+                            }
+
+                            newSeparator.appendChild(img);
+                        });
+
+                        fragment.appendChild(newSeparator);
+                    }
+                } else {
+                    Array.from(node.childNodes).forEach(processNode);
+                }
             }
         }
-    }
-    novelBox.innerHTML = resultContent;
+
+        Array.from(tempContainer.childNodes).forEach(processNode);
+
+        novelBox.innerHTML = '';
+        novelBox.appendChild(fragment);
+    });
 }
 
 window.addEventListener("DOMContentLoaded", () => {
