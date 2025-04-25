@@ -125,19 +125,20 @@ const NextPrevChapter = {
 
   updateDynamicElements(post, seriesPost) {
 	// Chapter
-    const titleChapter = post.title.$t;
-    const idChapter = post.id.$t.split('post-')[1];
-    const publishedChapter = post.published.$t;
-    const updatedChapter = post.updated.$t;
-    const postUrlChapter = (post.link && Array.isArray(post.link)) ? post.link.find(l => l.rel === "alternate" && l.type === "text/html")?.href : null;
+    	const titleChapter = post.title.$t;
+    	const idChapter = post.id.$t.split('post-')[1];
+    	const publishedChapter = post.published.$t;
+    	const updatedChapter = post.updated.$t;
+    	const postUrlChapter = (post.link && Array.isArray(post.link)) ? post.link.find(l => l.rel === "alternate" && l.type === "text/html")?.href : null;
 
 	// Series
-    const titleSeries = seriesPost ? seriesPost.title.$t : '';
-	const postUrlSeries = (seriesPost.link && Array.isArray(seriesPost.link)) ? seriesPost.link.find(l => l.rel === "alternate" && l.type === "text/html")?.href : null;
+    	const titleSeries = seriesPost ? seriesPost.title.$t : '';
+    	const postUrlSeries = (seriesPost.link && Array.isArray(seriesPost.link)) ? seriesPost.link.find(l => l.rel === "alternate" && l.type === "text/html")?.href : null;
 
 	// custom
 	// document.querySelector('').innerHTML = ; 
 	// document.querySelector('').textContent = ;
+	window.scrollTo(0, 0);
 	
   },
 
