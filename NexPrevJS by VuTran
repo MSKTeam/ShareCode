@@ -1,0 +1,181 @@
+<div class='box-np'/>
+
+<script>/*<![CDATA[*/ 
+const NextPrevChapter = {
+  async init(label, settings = {}) {
+    const defaultSettings = {
+      maxResults: 150,
+      containerSelector: '.check-box',
+      enableWebp: false,
+      boxNpSelector: '.box-np'
+    };
+    this.settings = { ...defaultSettings, ...settings };
+    this.feedUrl = `/feeds/posts/default/-/${encodeURIComponent(label)}?alt=json`;
+    this.posts = [];
+    this.seriesPost = null;
+    this.currentIndex = 0;
+    await this.loadAllPosts();
+    this.currentIndex = this.findCurrentIndex();
+    this.renderUI();
+    this.setupEventListeners();
+    this.updateContent();
+  },
+
+  async loadAllPosts() {
+    const firstUrl = `${this.feedUrl}&max-results=${this.settings.maxResults}&start-index=1`;
+    const firstResponse = await fetch(firstUrl);
+    const firstData = await firstResponse.json();
+    const totalResults = parseInt(firstData.feed.openSearch$totalResults.$t, 10);
+    const entries = this.filterPosts(firstData.feed.entry || []);
+    this.seriesPost = entries.find(entry => entry.category.some(cat => cat.term === 'Series')) || null;
+    this.posts = this.posts.concat(entries.filter(entry => !entry.category.some(cat => cat.term === 'Series')));
+    if (this.posts.length < totalResults - (this.seriesPost ? 1 : 0)) {
+      const promises = [];
+      for (let i = this.settings.maxResults + 1; i <= totalResults; i += this.settings.maxResults) {
+        const url = `${this.feedUrl}&max-results=${this.settings.maxResults}&start-index=${i}`;
+        promises.push(fetch(url).then(res => res.json()));
+      }
+      const results = await Promise.all(promises);
+      results.forEach(result => {
+        this.posts = this.posts.concat(this.filterPosts(result.feed.entry || []).filter(entry => !entry.category.some(cat => cat.term === 'Series')));
+      });
+    }
+  },
+
+  filterPosts(entries) {
+    return entries.map(entry => {
+      const processedEntry = { ...entry };
+      if (this.settings.enableWebp && processedEntry.content) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(processedEntry.content.$t, 'text/html');
+        const images = doc.querySelectorAll('img');
+        images.forEach(img => {
+          img.src = img.src.replace(/\/?[^\/]*(?:s72-c|s1600|s16000|w\d+-h\d+(?:-p\d+)?)[^\/]*\//g, '/s1600-rw/');
+        });
+        processedEntry.content.$t = doc.body.innerHTML;
+      }
+      return processedEntry;
+    });
+  },
+
+  renderUI() {
+    const containers = document.querySelectorAll(this.settings.boxNpSelector);
+    containers.forEach(container => {
+      container.innerHTML = `
+        <div id="space-np">
+          <select id="select-np">
+            ${this.posts.map((post, index) => `<option value="${index}">${post.title.$t}</option>`).join('')}
+          </select>
+          <div id="nextprev-np">
+            <button id="prev-np" disabled>Trước</button>
+            <button id="next-np" disabled>Sau</button>
+          </div>
+        </div>
+      `;
+    });
+    this.updateSelectAndButtons();
+  },
+
+  setupEventListeners() {
+    document.querySelectorAll(this.settings.boxNpSelector).forEach(container => {
+      const select = container.querySelector('#select-np');
+      const prevBtn = container.querySelector('#prev-np');
+      const nextBtn = container.querySelector('#next-np');
+      select.addEventListener('change', (e) => {
+        this.currentIndex = parseInt(e.target.value, 10);
+        this.updateContent();
+        this.updateSelectAndButtons();
+        this.updateHistory();
+      });
+      prevBtn.addEventListener('click', () => {
+        if (this.currentIndex < this.posts.length - 1) {
+          this.currentIndex++;
+          this.updateContent();
+          this.updateSelectAndButtons();
+          this.updateHistory();
+        }
+      });
+      nextBtn.addEventListener('click', () => {
+        if (this.currentIndex > 0) {
+          this.currentIndex--;
+          this.updateContent();
+          this.updateSelectAndButtons();
+          this.updateHistory();
+        }
+      });
+    });
+    window.addEventListener('popstate', (event) => {
+      if (event.state && event.state.index !== undefined) {
+        this.currentIndex = event.state.index;
+        this.updateContent();
+        this.updateSelectAndButtons();
+      }
+    });
+  },
+
+  updateContent() {
+    const currentPost = this.posts[this.currentIndex];
+    const container = document.querySelector(this.settings.containerSelector);
+    container.innerHTML = '';
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(currentPost.content.$t, 'text/html');
+    container.append(...doc.body.childNodes);
+    this.updateDynamicElements(currentPost, this.seriesPost);
+  },
+
+  updateDynamicElements(post, seriesPost) {
+	// Chapter
+    const titleChapter = post.title.$t;
+    const idChapter = post.id.$t.split('post-')[1];
+    const publishedChapter = post.published.$t;
+    const updatedChapter = post.updated.$t;
+    const postUrlChapter = (post.link && Array.isArray(post.link)) ? post.link.find(l => l.rel === "alternate" && l.type === "text/html")?.href : null;
+
+	// Series
+    const titleSeries = seriesPost ? seriesPost.title.$t : '';
+	const postUrlSeries = (seriesPost.link && Array.isArray(seriesPost.link)) ? seriesPost.link.find(l => l.rel === "alternate" && l.type === "text/html")?.href : null;
+
+	// custom
+	// document.querySelector('').innerHTML = ; 
+	// document.querySelector('').textContent = ;
+	
+  },
+
+  updateSelectAndButtons() {
+    document.querySelectorAll(this.settings.boxNpSelector).forEach(container => {
+      const select = container.querySelector('#select-np');
+      const prevBtn = container.querySelector('#prev-np');
+      const nextBtn = container.querySelector('#next-np');
+      select.value = this.currentIndex;
+      prevBtn.disabled = this.currentIndex === this.posts.length - 1;
+      nextBtn.disabled = this.currentIndex === 0;
+    });
+  },
+
+  updateHistory() {
+    const currentPost = this.posts[this.currentIndex];
+
+    const postUrl = currentPost.link.find(
+      l => l.rel === "alternate" && l.type === "text/html"
+    ).href;
+
+    history.pushState({ index: this.currentIndex }, currentPost.title.$t, postUrl);
+  },
+
+  findCurrentIndex() {
+    const currentUrl = window.location.href;
+    const index = this.posts.findIndex(post => 
+      post.link.some(link => link.rel === 'alternate' && link.href === currentUrl)
+    );
+    return index !== -1 ? index : 0;
+  }
+};
+/*]]>*/</script>              
+<script>                    
+      NextPrevChapter.init(``, {
+        maxResults: 150,
+        containerSelector: ``,
+        enableWebp: true,
+        boxNpSelector: `.box-np`
+      });
+</script>
